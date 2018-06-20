@@ -8,13 +8,23 @@
 
 /* Begin PBXBuildFile section */
 		2AFA82FA20D8CDC6000B4B87 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AFA82F920D8CDC6000B4B87 /* AppDelegate.m */; };
-		2AFA82FD20D8CDC6000B4B87 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AFA82FC20D8CDC6000B4B87 /* ViewController.m */; };
 		2AFA830020D8CDC6000B4B87 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2AFA82FE20D8CDC6000B4B87 /* Main.storyboard */; };
 		2AFA830220D8CDC7000B4B87 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2AFA830120D8CDC7000B4B87 /* Assets.xcassets */; };
 		2AFA830520D8CDC7000B4B87 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2AFA830320D8CDC7000B4B87 /* LaunchScreen.storyboard */; };
 		2AFA830820D8CDC7000B4B87 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AFA830720D8CDC7000B4B87 /* main.m */; };
 		2AFA831220D8CDC7000B4B87 /* RotateTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AFA831120D8CDC7000B4B87 /* RotateTests.m */; };
 		2AFA831D20D8CDC7000B4B87 /* RotateUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AFA831C20D8CDC7000B4B87 /* RotateUITests.m */; };
+		2AFA832C20D8CE55000B4B87 /* TabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AFA832B20D8CE55000B4B87 /* TabBarController.m */; };
+		2AFA832F20D8CE74000B4B87 /* NavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AFA832E20D8CE74000B4B87 /* NavigationController.m */; };
+		2AFA833220D8CE8D000B4B87 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AFA833120D8CE8D000B4B87 /* BaseViewController.m */; };
+		2AFA833620D8CFF4000B4B87 /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AFA833520D8CFF4000B4B87 /* FirstViewController.m */; };
+		2AFA833920D8D0AD000B4B87 /* CommonTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AFA833820D8D0AD000B4B87 /* CommonTools.m */; };
+		2AFA833C20D8D0E4000B4B87 /* CommonUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AFA833B20D8D0E4000B4B87 /* CommonUtils.m */; };
+		2AFA834020D8DD7E000B4B87 /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AFA833F20D8DD7E000B4B87 /* SecondViewController.m */; };
+		2AFA834320D8EA24000B4B87 /* ThirdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AFA834220D8EA24000B4B87 /* ThirdViewController.m */; };
+		2AFA834620D909C8000B4B87 /* UIViewController+Rotate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AFA834520D909C8000B4B87 /* UIViewController+Rotate.m */; };
+		2AFA834920D91495000B4B87 /* Aspects.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AFA834720D91494000B4B87 /* Aspects.m */; };
+		2AFA834C20D91578000B4B87 /* UIViewController+Rotate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AFA834B20D91578000B4B87 /* UIViewController+Rotate.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,8 +48,6 @@
 		2AFA82F520D8CDC6000B4B87 /* Rotate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Rotate.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2AFA82F820D8CDC6000B4B87 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		2AFA82F920D8CDC6000B4B87 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		2AFA82FB20D8CDC6000B4B87 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		2AFA82FC20D8CDC6000B4B87 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		2AFA82FF20D8CDC6000B4B87 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		2AFA830120D8CDC7000B4B87 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2AFA830420D8CDC7000B4B87 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -51,6 +59,28 @@
 		2AFA831820D8CDC7000B4B87 /* RotateUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RotateUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2AFA831C20D8CDC7000B4B87 /* RotateUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RotateUITests.m; sourceTree = "<group>"; };
 		2AFA831E20D8CDC7000B4B87 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2AFA832A20D8CE55000B4B87 /* TabBarController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TabBarController.h; sourceTree = "<group>"; };
+		2AFA832B20D8CE55000B4B87 /* TabBarController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TabBarController.m; sourceTree = "<group>"; };
+		2AFA832D20D8CE74000B4B87 /* NavigationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NavigationController.h; sourceTree = "<group>"; };
+		2AFA832E20D8CE74000B4B87 /* NavigationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NavigationController.m; sourceTree = "<group>"; };
+		2AFA833020D8CE8D000B4B87 /* BaseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
+		2AFA833120D8CE8D000B4B87 /* BaseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
+		2AFA833420D8CFF4000B4B87 /* FirstViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FirstViewController.h; sourceTree = "<group>"; };
+		2AFA833520D8CFF4000B4B87 /* FirstViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FirstViewController.m; sourceTree = "<group>"; };
+		2AFA833720D8D0AD000B4B87 /* CommonTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonTools.h; sourceTree = "<group>"; };
+		2AFA833820D8D0AD000B4B87 /* CommonTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonTools.m; sourceTree = "<group>"; };
+		2AFA833A20D8D0E3000B4B87 /* CommonUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonUtils.h; sourceTree = "<group>"; };
+		2AFA833B20D8D0E4000B4B87 /* CommonUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonUtils.m; sourceTree = "<group>"; };
+		2AFA833E20D8DD7E000B4B87 /* SecondViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SecondViewController.h; sourceTree = "<group>"; };
+		2AFA833F20D8DD7E000B4B87 /* SecondViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SecondViewController.m; sourceTree = "<group>"; };
+		2AFA834120D8EA24000B4B87 /* ThirdViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ThirdViewController.h; sourceTree = "<group>"; };
+		2AFA834220D8EA24000B4B87 /* ThirdViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ThirdViewController.m; sourceTree = "<group>"; };
+		2AFA834420D909C8000B4B87 /* UIViewController+Rotate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Rotate.h"; sourceTree = "<group>"; };
+		2AFA834520D909C8000B4B87 /* UIViewController+Rotate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Rotate.m"; sourceTree = "<group>"; };
+		2AFA834720D91494000B4B87 /* Aspects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Aspects.m; sourceTree = "<group>"; };
+		2AFA834820D91494000B4B87 /* Aspects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Aspects.h; sourceTree = "<group>"; };
+		2AFA834A20D91578000B4B87 /* UIViewController+Rotate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Rotate.h"; sourceTree = "<group>"; };
+		2AFA834B20D91578000B4B87 /* UIViewController+Rotate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Rotate.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,8 +133,14 @@
 			children = (
 				2AFA82F820D8CDC6000B4B87 /* AppDelegate.h */,
 				2AFA82F920D8CDC6000B4B87 /* AppDelegate.m */,
-				2AFA82FB20D8CDC6000B4B87 /* ViewController.h */,
-				2AFA82FC20D8CDC6000B4B87 /* ViewController.m */,
+				2AFA833420D8CFF4000B4B87 /* FirstViewController.h */,
+				2AFA833520D8CFF4000B4B87 /* FirstViewController.m */,
+				2AFA833E20D8DD7E000B4B87 /* SecondViewController.h */,
+				2AFA833F20D8DD7E000B4B87 /* SecondViewController.m */,
+				2AFA834120D8EA24000B4B87 /* ThirdViewController.h */,
+				2AFA834220D8EA24000B4B87 /* ThirdViewController.m */,
+				2AFA833D20D8D14E000B4B87 /* Vender */,
+				2AFA833320D8CFA6000B4B87 /* Base */,
 				2AFA82FE20D8CDC6000B4B87 /* Main.storyboard */,
 				2AFA830120D8CDC7000B4B87 /* Assets.xcassets */,
 				2AFA830320D8CDC7000B4B87 /* LaunchScreen.storyboard */,
@@ -130,6 +166,36 @@
 				2AFA831E20D8CDC7000B4B87 /* Info.plist */,
 			);
 			path = RotateUITests;
+			sourceTree = "<group>";
+		};
+		2AFA833320D8CFA6000B4B87 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				2AFA832A20D8CE55000B4B87 /* TabBarController.h */,
+				2AFA832B20D8CE55000B4B87 /* TabBarController.m */,
+				2AFA832D20D8CE74000B4B87 /* NavigationController.h */,
+				2AFA832E20D8CE74000B4B87 /* NavigationController.m */,
+				2AFA833020D8CE8D000B4B87 /* BaseViewController.h */,
+				2AFA833120D8CE8D000B4B87 /* BaseViewController.m */,
+				2AFA834A20D91578000B4B87 /* UIViewController+Rotate.h */,
+				2AFA834B20D91578000B4B87 /* UIViewController+Rotate.m */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		2AFA833D20D8D14E000B4B87 /* Vender */ = {
+			isa = PBXGroup;
+			children = (
+				2AFA833720D8D0AD000B4B87 /* CommonTools.h */,
+				2AFA833820D8D0AD000B4B87 /* CommonTools.m */,
+				2AFA833A20D8D0E3000B4B87 /* CommonUtils.h */,
+				2AFA833B20D8D0E4000B4B87 /* CommonUtils.m */,
+				2AFA834420D909C8000B4B87 /* UIViewController+Rotate.h */,
+				2AFA834520D909C8000B4B87 /* UIViewController+Rotate.m */,
+				2AFA834820D91494000B4B87 /* Aspects.h */,
+				2AFA834720D91494000B4B87 /* Aspects.m */,
+			);
+			path = Vender;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -262,9 +328,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2AFA82FD20D8CDC6000B4B87 /* ViewController.m in Sources */,
+				2AFA834020D8DD7E000B4B87 /* SecondViewController.m in Sources */,
+				2AFA834620D909C8000B4B87 /* UIViewController+Rotate.m in Sources */,
+				2AFA833220D8CE8D000B4B87 /* BaseViewController.m in Sources */,
+				2AFA833920D8D0AD000B4B87 /* CommonTools.m in Sources */,
+				2AFA833C20D8D0E4000B4B87 /* CommonUtils.m in Sources */,
+				2AFA833620D8CFF4000B4B87 /* FirstViewController.m in Sources */,
+				2AFA832C20D8CE55000B4B87 /* TabBarController.m in Sources */,
+				2AFA834320D8EA24000B4B87 /* ThirdViewController.m in Sources */,
+				2AFA832F20D8CE74000B4B87 /* NavigationController.m in Sources */,
 				2AFA830820D8CDC7000B4B87 /* main.m in Sources */,
 				2AFA82FA20D8CDC6000B4B87 /* AppDelegate.m in Sources */,
+				2AFA834C20D91578000B4B87 /* UIViewController+Rotate.m in Sources */,
+				2AFA834920D91495000B4B87 /* Aspects.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -434,14 +510,16 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = TVU4BLUWKY;
 				INFOPLIST_FILE = Rotate/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.share.www.Rotate;
+				PRODUCT_BUNDLE_IDENTIFIER = com.actuive.new;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -450,14 +528,16 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = TVU4BLUWKY;
 				INFOPLIST_FILE = Rotate/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.share.www.Rotate;
+				PRODUCT_BUNDLE_IDENTIFIER = com.actuive.new;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
