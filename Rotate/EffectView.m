@@ -7,11 +7,16 @@
 //
 
 #import "EffectView.h"
+#import "EffectModel.h"
+#import "Aspects.h"
 
 @interface EffectView ()
 
 @property (nonatomic, weak) UIView *sourceView;
 @property (nonatomic, weak) UIView *indicatorView;
+@property (nonatomic, strong) NSMutableArray<EffectModel *> *effects;
+@property (nonatomic, strong) EffectModel *currentEffect;
+@property (nonatomic, strong) EffectModel *nextEffect;
 
 @end
 
@@ -39,21 +44,82 @@
 
 - (void)increasedEffect:(UILongPressGestureRecognizer *)gesture {
     
+    static UIView *maskView;
+    static EffectModel *effect;
+    CGRect currentFrame = self.indicatorView.frame;
+    
     switch (gesture.state) {
         case UIGestureRecognizerStateBegan: {
             
-            NSLog(@"Gesture recognizer began   %@", self.nextResponder);
+            maskView = [[UIView alloc] initWithFrame:CGRectMake(CGRectGetMinX(currentFrame), 0, 0, 70)];
+            maskView.backgroundColor = [UIColor colorWithRed:arc4random() % 255 / 255.0 green:arc4random() % 255 / 255.0 blue:arc4random() % 255 / 255.0 alpha:0.3];
+            [self.sourceView addSubview:maskView];
+            
+            effect = [[EffectModel alloc] init];
+            effect.startAnchor = CGRectGetMinX(maskView.frame);
+            effect.effectColor = maskView.backgroundColor;
+            effect.maskView = maskView;
+            
+            if (self.currentEffect) {
+                
+                [self.effects insertObject:effect atIndex:self.currentEffect.index + 1];
+                
+                EffectModel *nextEffect = [[EffectModel alloc] init];
+                nextEffect.endAnchor = self.currentEffect.endAnchor;
+                
+                self.currentEffect.endAnchor = CGRectGetMinX(currentFrame);
+                CGRect currentFrame = self.currentEffect.maskView.frame;
+                currentFrame.size.width = self.currentEffect.endAnchor - self.currentEffect.startAnchor;
+                self.currentEffect.maskView.frame = currentFrame;
+                
+                nextEffect.startAnchor = self.currentEffect.endAnchor;
+                UIView *separationView = [[UIView alloc] initWithFrame:CGRectMake(nextEffect.startAnchor, 0, nextEffect.endAnchor - nextEffect.startAnchor, 70)];
+                separationView.backgroundColor = self.currentEffect.maskView.backgroundColor;
+                nextEffect.maskView = separationView;
+                [self.sourceView addSubview:separationView];
+                [self.effects insertObject:nextEffect atIndex:self.currentEffect.index + 2];
+                self.nextEffect = nextEffect;
+            } else if (self.nextEffect) {
+                
+                [self.effects insertObject:effect atIndex:self.nextEffect.index];
+            } else {
+                
+                [self.effects addObject:effect];
+            }
         }
             break;
         case UIGestureRecognizerStateChanged: {
             
-            CGRect currentFrame = self.indicatorView.frame;
             currentFrame.origin.x += 1;
 
             if (CGRectGetWidth(self.sourceView.frame) >= CGRectGetMaxX(currentFrame)) {
 
                 self.indicatorView.frame = currentFrame;
+                
+                CGFloat width = CGRectGetMinX(currentFrame) - CGRectGetMinX(maskView.frame);
+                CGRect currentMaskFrame = maskView.frame;
+                currentMaskFrame.size.width = width;
+                maskView.frame = currentMaskFrame;
+                
+                effect.endAnchor = CGRectGetMaxX(maskView.frame);
             }
+            
+            if (self.nextEffect != nil && CGRectGetMinX(self.indicatorView.frame) > CGRectGetMinX(self.nextEffect.maskView.frame)) {
+                
+                self.nextEffect.startAnchor = CGRectGetMinX(self.indicatorView.frame);
+                CGRect currentNextFrame = self.nextEffect.maskView.frame;
+                currentNextFrame.origin.x = self.nextEffect.startAnchor;
+                currentNextFrame.size.width = self.nextEffect.endAnchor - self.nextEffect.startAnchor;
+                self.nextEffect.maskView.frame = currentNextFrame;
+            }
+        }
+            break;
+        case UIGestureRecognizerStateEnded:
+        case UIGestureRecognizerStateFailed:
+        case UIGestureRecognizerStateCancelled: {
+            
+            effect.endAnchor = CGRectGetMaxX(maskView.frame);
+            [self locateindicatorView];
         }
             break;
             
@@ -72,6 +138,36 @@
         
         self.indicatorView.frame = currentFrame;
     }];
+    
+    [self locateindicatorView];
+}
+
+- (void)locateindicatorView {
+    
+    CGFloat startIndicator = CGRectGetMinX(self.indicatorView.frame);
+    self.currentEffect = nil;
+    self.nextEffect = nil;
+    __weak typeof(self) weakSelf = self;
+    [self.effects enumerateObjectsUsingBlock:^(EffectModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        
+        if (obj.startAnchor <= startIndicator && obj.endAnchor > startIndicator) {
+            
+            weakSelf.currentEffect = obj;
+            if (idx != weakSelf.effects.count - 1) {
+                
+                weakSelf.nextEffect = weakSelf.effects[idx + 1];
+            }
+            
+            *stop = YES;
+        }
+        
+        if (obj.startAnchor > startIndicator) {
+            
+            weakSelf.currentEffect = nil;
+            weakSelf.nextEffect = obj;
+            *stop = YES;
+        }
+    }];
 }
 
 - (void)installSubviews {
@@ -85,6 +181,31 @@
     indicatorView.backgroundColor = [UIColor whiteColor];
     [sourceView addSubview:indicatorView];
     self.indicatorView = indicatorView;
+}
+
+- (NSMutableArray<EffectModel *> *)effects {
+    
+    if (_effects == nil) {
+        
+        _effects = [NSMutableArray array];
+        
+        __weak typeof(self) weakSelf = self;
+        [_effects aspect_hookSelector:@selector(addObject:) withOptions:AspectPositionAfter usingBlock:^(id<AspectInfo> aspectInfo, id object) {
+            
+            __strong typeof(weakSelf) strongSelf = weakSelf;
+            NSMutableArray *array = strongSelf->_effects;
+            NSUInteger index = [array indexOfObject:object];
+            if (![[array lastObject] isEqual:object]) {
+                
+                [array enumerateObjectsAtIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(index + 1, array.count - index - 1)] options:NSEnumerationConcurrent usingBlock:^(EffectModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                    
+                    obj.index++;
+                }];
+            }
+        } error:nil];
+    }
+    
+    return _effects;
 }
 
 @end
