@@ -8,6 +8,7 @@
 
 #import "SecondViewController.h"
 #import "ThirdViewController.h"
+#import "NavigationController.h"
 
 @interface SecondViewController ()
 
@@ -31,8 +32,9 @@
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
     
     ThirdViewController *thirdVc = [ThirdViewController new];
+    NavigationController *navigationController = [[NavigationController alloc] initWithRootViewController:thirdVc];
     
-    [self presentViewController:thirdVc animated:YES completion:nil];
+    [self presentViewController:navigationController animated:YES completion:nil];
 }
 
 - (UIInterfaceOrientationMask)supportedInterfaceOrientations {

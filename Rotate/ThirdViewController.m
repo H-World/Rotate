@@ -7,6 +7,7 @@
 //
 
 #import "ThirdViewController.h"
+#import "SecondViewController.h"
 
 @interface ThirdViewController ()
 
@@ -39,7 +40,8 @@
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
     
-    [self dismissViewControllerAnimated:YES completion:nil];
+    SecondViewController *secondViewController = [SecondViewController new];
+    [self.navigationController pushViewController:secondViewController animated:YES];
 }
 
 @end

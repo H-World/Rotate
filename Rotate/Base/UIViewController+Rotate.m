@@ -12,12 +12,6 @@
 
 @implementation UIViewController (Rotate)
 
-+(void)load {
-    
-    [BaseViewController aspect_hookSelector:@selector(supportedInterfaceOrientations) withOptions:AspectPositionAfter usingBlock:^(id<AspectInfo> aspectInfo) {
-        
-        NSLog(@"%@", aspectInfo.instance);
-    } error:nil];
-}
+
 
 @end

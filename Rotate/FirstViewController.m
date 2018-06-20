@@ -24,4 +24,12 @@
     [UIDevice changeOrientationPortrait];
 }
 
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    
+    [super touchesBegan:touches withEvent:event];
+    
+    SecondViewController *secondViewController = [SecondViewController new];
+    [self.navigationController pushViewController:secondViewController animated:YES];
+}
+
 @end
