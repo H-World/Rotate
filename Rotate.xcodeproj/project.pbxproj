@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2A70CE1920D9DA410031FF2A /* EffectView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A70CE1820D9DA410031FF2A /* EffectView.m */; };
 		2AFA82FA20D8CDC6000B4B87 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AFA82F920D8CDC6000B4B87 /* AppDelegate.m */; };
 		2AFA830020D8CDC6000B4B87 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2AFA82FE20D8CDC6000B4B87 /* Main.storyboard */; };
 		2AFA830220D8CDC7000B4B87 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2AFA830120D8CDC7000B4B87 /* Assets.xcassets */; };
@@ -45,6 +46,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2A70CE1720D9DA410031FF2A /* EffectView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EffectView.h; sourceTree = "<group>"; };
+		2A70CE1820D9DA410031FF2A /* EffectView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EffectView.m; sourceTree = "<group>"; };
 		2AFA82F520D8CDC6000B4B87 /* Rotate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Rotate.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2AFA82F820D8CDC6000B4B87 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		2AFA82F920D8CDC6000B4B87 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -139,6 +142,8 @@
 				2AFA833F20D8DD7E000B4B87 /* SecondViewController.m */,
 				2AFA834120D8EA24000B4B87 /* ThirdViewController.h */,
 				2AFA834220D8EA24000B4B87 /* ThirdViewController.m */,
+				2A70CE1720D9DA410031FF2A /* EffectView.h */,
+				2A70CE1820D9DA410031FF2A /* EffectView.m */,
 				2AFA833D20D8D14E000B4B87 /* Vender */,
 				2AFA833320D8CFA6000B4B87 /* Base */,
 				2AFA82FE20D8CDC6000B4B87 /* Main.storyboard */,
@@ -333,6 +338,7 @@
 				2AFA833220D8CE8D000B4B87 /* BaseViewController.m in Sources */,
 				2AFA833920D8D0AD000B4B87 /* CommonTools.m in Sources */,
 				2AFA833C20D8D0E4000B4B87 /* CommonUtils.m in Sources */,
+				2A70CE1920D9DA410031FF2A /* EffectView.m in Sources */,
 				2AFA833620D8CFF4000B4B87 /* FirstViewController.m in Sources */,
 				2AFA832C20D8CE55000B4B87 /* TabBarController.m in Sources */,
 				2AFA834320D8EA24000B4B87 /* ThirdViewController.m in Sources */,
