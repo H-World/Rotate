@@ -57,6 +57,7 @@
             
             effect = [[EffectModel alloc] init];
             effect.startAnchor = CGRectGetMinX(maskView.frame);
+            effect.endAnchor = CGRectGetMinX(maskView.frame);
             effect.effectColor = maskView.backgroundColor;
             effect.maskView = maskView;
             
@@ -66,13 +67,13 @@
                 
                 EffectModel *nextEffect = [[EffectModel alloc] init];
                 nextEffect.endAnchor = self.currentEffect.endAnchor;
+                nextEffect.startAnchor = CGRectGetMinX(currentFrame);
                 
                 self.currentEffect.endAnchor = CGRectGetMinX(currentFrame);
-                CGRect currentFrame = self.currentEffect.maskView.frame;
-                currentFrame.size.width = self.currentEffect.endAnchor - self.currentEffect.startAnchor;
-                self.currentEffect.maskView.frame = currentFrame;
+                CGRect currentEffectFrame = self.currentEffect.maskView.frame;
+                currentEffectFrame.size.width = self.currentEffect.endAnchor - self.currentEffect.startAnchor;
+                self.currentEffect.maskView.frame = currentEffectFrame;
                 
-                nextEffect.startAnchor = self.currentEffect.endAnchor;
                 UIView *separationView = [[UIView alloc] initWithFrame:CGRectMake(nextEffect.startAnchor, 0, nextEffect.endAnchor - nextEffect.startAnchor, 70)];
                 separationView.backgroundColor = self.currentEffect.maskView.backgroundColor;
                 nextEffect.maskView = separationView;
@@ -104,13 +105,29 @@
                 effect.endAnchor = CGRectGetMaxX(maskView.frame);
             }
             
-            if (self.nextEffect != nil && CGRectGetMinX(self.indicatorView.frame) > CGRectGetMinX(self.nextEffect.maskView.frame)) {
+            if (self.nextEffect != nil) {
                 
-                self.nextEffect.startAnchor = CGRectGetMinX(self.indicatorView.frame);
-                CGRect currentNextFrame = self.nextEffect.maskView.frame;
-                currentNextFrame.origin.x = self.nextEffect.startAnchor;
-                currentNextFrame.size.width = self.nextEffect.endAnchor - self.nextEffect.startAnchor;
-                self.nextEffect.maskView.frame = currentNextFrame;
+                if (CGRectGetMinX(self.indicatorView.frame) > self.nextEffect.startAnchor && CGRectGetMinX(self.indicatorView.frame) < self.nextEffect.endAnchor) {
+                    
+                    self.nextEffect.startAnchor = CGRectGetMinX(self.indicatorView.frame);
+                    
+                    CGRect currentNextFrame = self.nextEffect.maskView.frame;
+                    currentNextFrame.origin.x = self.nextEffect.startAnchor;
+                    currentNextFrame.size.width = self.nextEffect.endAnchor - self.nextEffect.startAnchor;
+                    
+                    self.nextEffect.maskView.frame = currentNextFrame;
+                } else if (CGRectGetMinX(self.indicatorView.frame) >= CGRectGetMaxX(self.nextEffect.maskView.frame)) {
+                    
+                    EffectModel *changeEffect = nil;
+                    if (![self.nextEffect isEqual:self.effects.lastObject]) {
+                        
+                        NSUInteger index = [self.effects indexOfObject:self.nextEffect];
+                        changeEffect = self.effects[index + 1];
+                    }
+                    [self.nextEffect.maskView removeFromSuperview];
+                    [self.effects removeObject:self.nextEffect];
+                    self.nextEffect = changeEffect;
+                }
             }
         }
             break;
@@ -190,7 +207,7 @@
         _effects = [NSMutableArray array];
         
         __weak typeof(self) weakSelf = self;
-        [_effects aspect_hookSelector:@selector(addObject:) withOptions:AspectPositionAfter usingBlock:^(id<AspectInfo> aspectInfo, id object) {
+        [_effects aspect_hookSelector:@selector(insertObject:atIndex:) withOptions:AspectPositionAfter usingBlock:^(id<AspectInfo> aspectInfo, id object, NSUInteger idx) {
             
             __strong typeof(weakSelf) strongSelf = weakSelf;
             NSMutableArray *array = strongSelf->_effects;
@@ -200,6 +217,20 @@
                 [array enumerateObjectsAtIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(index + 1, array.count - index - 1)] options:NSEnumerationConcurrent usingBlock:^(EffectModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
                     
                     obj.index++;
+                }];
+            }
+        } error:nil];
+        
+        [_effects aspect_hookSelector:@selector(removeObject:) withOptions:AspectPositionBefore usingBlock:^(id<AspectInfo> aspectInfo, id object) {
+            
+            __strong typeof(weakSelf) strongSelf = weakSelf;
+            NSMutableArray *array = strongSelf->_effects;
+            NSUInteger index = [array indexOfObject:object];
+            if (![[array lastObject] isEqual:object]) {
+                
+                [array enumerateObjectsAtIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(index + 1, array.count - index - 1)] options:NSEnumerationConcurrent usingBlock:^(EffectModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                    
+                    obj.index--;
                 }];
             }
         } error:nil];
